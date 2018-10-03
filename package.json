@@ -4,27 +4,27 @@
   "//3": "updating this file will download and update your packages",
   "name": "Cepahlon-MTP",
   "version": "0.9.0",
-  "description": "dunno",
+  "description": "Warframe companion discord bot",
   "main": "node bot.js",
   "scripts": {
     "start": "node bot.js"
   },
   "dependencies": {
     "discord.js": "^11.4.2",
-    "express": "^4.16.3",
-    "jquery": "^3.3.1",
-    "jsdom": "^12.0.0"
+    "express": "^4.16.3"
   },
   "engines": {
     "node": "8.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
+    "url": "https://github.com/kaszanka1234/Cephalon-skynet"
   },
   "license": "MIT",
   "keywords": [
     "node",
-    "glitch",
+	"warframe",
+	"discord",
+	"bot",
     "express"
   ]
 }
