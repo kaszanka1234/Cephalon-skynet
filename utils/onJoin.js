@@ -1,6 +1,7 @@
+var config = require('../config.json');
 exports.run = (client, message) => {
-  if (message.guild.id != "434382006575431690") return;
-  client.channels.get("488776821782085632").send("<@"+message.user.id+"> joined");
+  if (message.guild.id != config.guildID) return;
+  client.channels.get(config.channelBotLog).send("<@"+message.user.id+"> joined");
   try{
     hello(client, message);
   } catch (e) {
@@ -12,10 +13,10 @@ exports.run = (client, message) => {
 function hello(client, message){
   var thonk = require('../utils/randomthonk.js');
   thonk = thonk.run();
-  client.channels.get("434384554091085832").send("Hi there <@"+message.user.id+">, Welcome on **"+message.guild.name+"**, remember to read <#434384191820398593> and set your nickname here to the same as in game "+thonk+"\n\
+  client.channels.get(config.channelGeneral).send("Hi there <@"+message.user.id+">, Welcome on **"+message.guild.name+"**, remember to read <#434384191820398593> and set your nickname here to the same as in game "+thonk+"\n\
 "); 
   //var role = message.guild.roles.find('name', 'Initiate');
-  message.addRole("452098650529857537");
+  message.addRole(config.roleGuest);
   
   //console.log(message.guild.roles.find('name', 'Initiate'));
 }

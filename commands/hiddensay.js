@@ -8,7 +8,7 @@ exports.run = (client, message, args) => {
   args.forEach(function(arg){
     text+=" "+arg;
   });
-  client.channels.get("434384554091085832").send(text);
+  client.channels.get(config.channelGeneral).send(text);
 	/*
 	if(args.length !=1){
 		message.channel.send('Not enough arguments ni:b::b:a');

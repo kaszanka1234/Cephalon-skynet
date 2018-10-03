@@ -1,3 +1,4 @@
+var config = require('../config.json');
 exports.run = (client, message, args) => {
   if(message.guild === null) return;
 	//if(message.member.roles.some(r=>["Warlord", "General", "Officer"].includes(r.name))){

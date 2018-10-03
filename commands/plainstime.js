@@ -1,3 +1,4 @@
+var config = require('../config.json');
 const https = require('https');
 
 exports.run = (client, message, args) => {

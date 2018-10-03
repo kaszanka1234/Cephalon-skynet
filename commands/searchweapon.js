@@ -1,3 +1,4 @@
+var config = require('../config.json');
 let betterPolarity = require('../utils/betterPolarity.js');
 let thonkmeter = require('../utils/thonkmeter.js');
 

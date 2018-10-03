@@ -1,3 +1,4 @@
+var config = require('../config.json');
 //////////////////////////////
 // returns a random thonk
 var thonks = [

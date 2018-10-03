@@ -1,3 +1,4 @@
+var config = require('../config.json');
 exports.run = (client, message, args) => {
 
   let thonk = require('../utils/randomthonk.js');

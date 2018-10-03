@@ -1,14 +1,15 @@
+var config = require('../config.json');
 exports.run = (client, message, args) => {
   if(message.channel.id != "491368999892942858") return;
   message.delete(message.id);
   
-  var warlord = message.guild.roles.get("434382172606955522");
-  var general = message.guild.roles.get("434389537826013186");
-  var officer = message.guild.roles.get("488133427321634826");
-  var sergeant = message.guild.roles.get("488133274699300886");
-  var soldier = message.guild.roles.get("434393086869635074");
-  var initiate = message.guild.roles.get("488685606868746252");
-  var guest = message.guild.roles.get("452098650529857537");
+  var warlord = message.guild.roles.get(config.roleWarlord);
+  var general = message.guild.roles.get(config.roleGeneral);
+  var officer = message.guild.roles.get(config.roleOfficer);
+  var sergeant = message.guild.roles.get(config.roleSergeant);
+  var soldier = message.guild.roles.get(config.roleSoldier);
+  var initiate = message.guild.roles.get(config.roleInitiate);
+  var guest = message.guild.roles.get(config.roleGuest);
   
   message.channel.send({embed:{
     "description":warlord+"\n\

@@ -87,17 +87,17 @@ client.login(process.env.TOKEN);
 
 //keep alive script for bot
 //pings the website address each 5 minutes
-
-const http = require('http');
-const express = require('express');
-const app = express();
-app.get("/", (request, response) => {
-  console.log(Date.now() + " Ping Received");
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+if(config.env == "prod"){
+  const http = require('http');
+  const express = require('express');
+  const app = express();
+  app.get("/", (request, response) => {
+    console.log(Date.now() + " Ping Received");
+    response.sendStatus(200);
+  });
+  app.listen(process.env.PORT);
+  setInterval(() => {
+    http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
-
+}
 // end of keep alive script //

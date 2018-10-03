@@ -24,7 +24,7 @@ exports.run = (client, message, args) => {
       },
       {
         "name": "Got any suggestions what else I could do or found a bug?",
-        "value": "Message <@333769079569776642>"
+        "value": "Message <@"+config.ownerID+">"
       }
     ]
   }

@@ -1,3 +1,4 @@
+var config = require('../config.json');
 exports.run = (value, max) => {
   var stateON = "<:thonk:453599203701293056>";
   var stateOFF = "<:gray_thonk:491331837776625664>";

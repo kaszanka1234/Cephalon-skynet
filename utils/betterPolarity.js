@@ -1,3 +1,4 @@
+var config = require('../config.json');
 ////////////////////////////////
 // translates polarity names into BETTER, FASTER, STRONGER versions
 exports.run = (name) => {
