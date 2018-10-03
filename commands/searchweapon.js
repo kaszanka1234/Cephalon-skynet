@@ -64,7 +64,7 @@ Don't pretend you wanted tu use them anyway :wink:");
 }
 
 function respond(client, message, weap){
-  console.log(weap);
+  //console.log(weap);
   //return;
   if(weap.category=="Melee"){
     message.channel.send("Melee weapons are still being implemented");
