@@ -1,6 +1,8 @@
 var config = require('../config.json');
 let betterPolarity = require('../utils/betterPolarity.js');
 let thonkmeter = require('../utils/thonkmeter.js');
+var damageConvert = require('../utils/damageObjectToArray.js');
+var damageToIcon = require('../utils/damageToIcon.js');
 
 exports.run = (client, message, args) => {
   message.channel.send("this function is still a work in porgress");
@@ -64,7 +66,13 @@ Don't pretend you wanted tu use them anyway :wink:");
 }
 
 function respond(client, message, weap){
-  //console.log(weap);
+  var damageTypes = damageConvert.run(weap.damageTypes);
+  var damageTypesString = "";
+  for(var i=0;i<damageTypes.length;i++){
+	  damageTypesString += damageToIcon.run(damageTypes[i][0])+" "+damageTypes[i][1]+"\n";
+  }
+  
+  
   //return;
   if(weap.category=="Melee"){
     message.channel.send("Melee weapons are still being implemented");
@@ -151,7 +159,7 @@ function respond(client, message, weap){
           },
           {
             "name":"damage types",
-            "value":"placeholder"
+            "value":damageTypesString
           }
         ]
       }});
