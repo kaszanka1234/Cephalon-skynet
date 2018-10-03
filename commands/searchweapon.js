@@ -104,7 +104,7 @@ function respond(client, message, weap){
           },
           {
             "name":"fire rate",
-            "value":(Math.floor(weap.fireRate.toString()*10)/10).toString(),
+            "value":(Math.round(weap.fireRate.toString()*10)/10).toString(),
             "inline":true
           },
           {
@@ -129,12 +129,12 @@ function respond(client, message, weap){
           },
           {
             "name":"critical hits",
-            "value":Math.floor(weap.criticalChance*100).toString()+"% for x"+weap.criticalMultiplier.toString(),
+            "value":Math.round(weap.criticalChance*100).toString()+"% for x"+weap.criticalMultiplier.toString(),
             "inline":true
           },
           {
             "name":"status chance",
-            "value":(Math.floor(weap.procChance*1000)/10).toString()+"%",
+            "value":(Math.round(weap.procChance*1000)/10).toString()+"%",
             "inline":true
           },
           {
