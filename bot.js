@@ -16,6 +16,9 @@ client.on('message', message => {
   //ignore the message if the author is bot or the message doesn't start with the prefix
 	if (message.author.bot) return;
 	if (!message.content.startsWith(config.prefix)) return;
+	
+  //ignore if dev version is used by not-owner
+	if(config.env == "dev" && message.author.id != config.ownerID) return;
   
   //executes a command if it finds a matching command file
 	try {
