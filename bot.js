@@ -42,13 +42,33 @@ client.on("guildMemberAdd", message => {
   try{
     
     //reloads the cache
-		delete require.cache[require.resolve("./onJoin.js")];
+		delete require.cache[require.resolve("./utils/onJoin.js")];
     
     //loads and executes the file
-    let onJoin = require("./onJoin.js");
+    let onJoin = require("./utils/onJoin.js");
     onJoin.run(client, message);
     
   } 
+  //logs any errors
+  catch (e){
+    console.log(e.stack);
+  }
+  
+});
+
+client.on("guildMemberRemove", message => {
+  
+  //executes a matching command file
+  try{
+    
+    //reloads the cache
+		delete require.cache[require.resolve("./utils/onLeave.js")];
+    
+    //loads and executes the file
+    let onLeave = require("./utils/onLeave.js");
+    onLeave.run(client, message);
+    
+  }
   //logs any errors
   catch (e){
     console.log(e.stack);

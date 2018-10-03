@@ -10,8 +10,12 @@ exports.run = (client, message) => {
 }
 
 function hello(client, message){
-  client.channels.get("434384554091085832").send("Hi there <@"+message.user.id+">, Welcome on **"+message.guild.name+"**, remember to read <#434384191820398593> and set your nickname here to the same as in game"); 
+  var thonk = require('../utils/randomthonk.js');
+  thonk = thonk.run();
+  client.channels.get("434384554091085832").send("Hi there <@"+message.user.id+">, Welcome on **"+message.guild.name+"**, remember to read <#434384191820398593> and set your nickname here to the same as in game "+thonk+"\n\
+"); 
   //var role = message.guild.roles.find('name', 'Initiate');
-  message.addRole("488685606868746252");
+  message.addRole("452098650529857537");
+  
   //console.log(message.guild.roles.find('name', 'Initiate'));
 }

@@ -1,3 +1,4 @@
+var config = require('../config.json');
 exports.run = (client, message, args) => {
 	message.channel.send({
   "embed": {
@@ -11,8 +12,7 @@ exports.run = (client, message, args) => {
 ?ping - pong! (DM)\n\
 ?hmmm - probably broken ¯\\_(ツ)_/¯\n\
 ?randomthonk - gives you a random thonk (DM)\n\
-?thonk - displays a MEGATHONK\n\
-?rules - for updating the rules"
+?thonk - displays a MEGATHONK"
       },
       {
         "name":"Utility commands",
@@ -27,6 +27,19 @@ exports.run = (client, message, args) => {
         "value": "Message <@333769079569776642>"
       }
     ]
+  }
+});
+  if(message.guild.id != config.guildID) return;
+  if(!message.member.roles.some(r=>["Warlord", "General", "Officer", "Sergeant"].includes(r.name))) return;
+  message.channel.send({
+  "embed": {
+    "title":"Admin commands",
+    "description": "\
+?rules - for updating the rules\n\
+?ranks - for updating the ranks list\n\
+?approve @user - sets user's role to initiate\n\
+ask !help for list of moderation commands",
+    "color": 26879
   }
 });
 }

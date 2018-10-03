@@ -1,6 +1,7 @@
 ////////////////////////////////
 // translates polarity names into BETTER, FASTER, STRONGER versions
 exports.run = (name) => {
+  name = name.toLowerCase();
   switch (name){
     case "madurai":
       return "Madurai (V)";
