@@ -1,6 +1,6 @@
 var config = require('../config.json');
-let betterPolarity = require('../utils/betterPolarity.js');
-let thonkmeter = require('../utils/thonkmeter.js');
+var betterPolarity = require('../utils/betterPolarity.js');
+var thonkmeter = require('../utils/thonkmeter.js');
 var damageConvert = require('../utils/damageObjectToArray.js');
 var damageToIcon = require('../utils/damageToIcon.js');
 
@@ -18,6 +18,18 @@ exports.run = (client, message, args) => {
 Don't pretend you wanted tu use them anyway :wink:");
     return;
   }
+  
+  var profanity = ["my dick","my penis","my cock","your penis","your dick","your cock","mydick","mypenis","mycock","yourcock","yourpenis","yourdick"];
+  var profanityFound = false;
+  
+  profanity.forEach(function(word){
+	if(arg.toLowerCase().includes(word)){
+		message.channel.send("Couldn't find object\nobject too small");
+		profanityFound = true;
+		return;
+	}  
+  });
+  
   const https = require('https');
   
   https.get('https://api.warframestat.us/weapons/search/'+arg, (resp) => {
@@ -31,7 +43,7 @@ Don't pretend you wanted tu use them anyway :wink:");
   // The whole response has been received. Print out the result.
   resp.on('end', () => {
     data = JSON.parse(data);
-    if(data[0] == undefined) {
+    if(data[0] == undefined && !profanityFound) {
       message.channel.send("I have not found anything, try something different");
       return;
     }
