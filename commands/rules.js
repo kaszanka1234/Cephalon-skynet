@@ -6,7 +6,7 @@ exports.run = (client, message, args) => {
 	message.channel.send(
 	{"embed": {
 	"title": "Most importantly you need discord and be on this server",
-	"description": "It might sound obvious but it needs to be written somewhere"
+	"description": "It might sound obvious but it needs to be written somewhere",
     "color": 16711680,
 	"timestamp": new Date(),
     "footer": {
