@@ -5,6 +5,23 @@ exports.run = (client, message, args) => {
 	if (message.channel.id != 434384191820398593) return;
 	message.channel.send(
 	{"embed": {
+	"title": "Most importantly you need discord and be on this server",
+	"description": "It might sound obvious but it needs to be written somewhere"
+    "color": 16711680,
+	"timestamp": new Date(),
+    "footer": {
+      "icon_url": "https://cdn.discordapp.com/embed/avatars/0.png",
+      "text": "Last updated"
+    },
+    "author": {
+      "name": "Kaszanka_1234",
+      "icon_url": "https://cdn.discordapp.com/avatars/333769079569776642/8f59a0b729c629b286c15d042eb042cf.webp?size=32"
+    }
+	}
+	}
+	);
+	message.channel.send(
+	{"embed": {
 	"title": "Discord rules",
 	"description": "\
 		**1.** Be respectful.\n\
