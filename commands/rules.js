@@ -30,7 +30,7 @@ exports.run = (client, message, args) => {
 		**4.** Usage of excessive extreme innapropriate langauge is prohibited.\n\
 		**5.** Mentioning @everyone, the Moderators or a specific person without proper reason is prohibited.\n\
 		**6.** Don't post someone's personal information without permission.\n\
-		**7.** Please use a name that others will be able to recognize you as from in-game. Do not use fake nickname.\n\
+		**7.** Please use the same name that you use in-game. Do not use fake nickname.\n\
 		**8.** NO advertising of any kind on our Discord server, This includes links to sites that earn you money. Admins decide what is allowed and what is not. DONT asume anything check with an admin first.\n\
 		\n\
 		It's also a good idea to mute <#486865905788387328> channel to not get spammed\n\
