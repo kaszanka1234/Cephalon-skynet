@@ -20,6 +20,8 @@ exports.run = (client, message, args) => {
 ?searchframe [name] - show info about given warframe (DM)\n\
 ?searchweapon [name] - show info about given weapon (DM)(WIP)\n\
 ?compareweapons [name] ? [name] - compares 2 weapons' stats (DM)(WIP)\n\
+?relic [era] [name] - show relic drops (DM)(WIP)\n\
+?relic [item] - show which relics the item is in(DM)(WIP)\n\
 "
       },
       {
