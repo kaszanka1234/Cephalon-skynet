@@ -24,16 +24,17 @@ exports.run = (client, message, args) => {
 	{"embed": {
 	"title": "Discord rules",
 	"description": "\
-		**1.** Be respectful.\n\
-		**2.** Sending/Linking any harmful material such as viruses, IP grabbers or harmware results in an immediate and permanent ban.\n\
-		**3.** Use proper grammar and spelling and don't spam.\n\
-		**4.** Usage of excessive extreme innapropriate langauge is prohibited.\n\
-		**5.** Mentioning @everyone, the Moderators or a specific person without proper reason is prohibited.\n\
-		**6.** Don't post someone's personal information without permission.\n\
-		**7.** Please use the same name that you use in-game. Do not use fake nickname.\n\
-		**8.** NO advertising of any kind on our Discord server, This includes links to sites that earn you money. Admins decide what is allowed and what is not. DONT asume anything check with an admin first.\n\
-		\n\
-		It's also a good idea to mute <#486865905788387328> channel to not get spammed\n\
+**1.** Be respectful.\n\
+**2.** Sending/Linking any harmful material such as viruses, IP grabbers or harmware results in an immediate and permanent ban.\n\
+**3.** Use proper grammar and spelling and don't spam.\n\
+**4.** Usage of excessive extreme innapropriate langauge is prohibited.\n\
+**5.** Usage of excessive caps is prohibited\n\
+**6.** Mentioning @everyone, the Moderators or a specific person without proper reason is prohibited.\n\
+**7.** Don't post someone's personal information without permission.\n\
+**8.** Please use the same name that you use in-game. Do not use fake nickname.\n\
+**9.** NO advertising of any kind on our Discord server, This includes links to sites that earn you money. Admins decide what is allowed and what is not. DONT asume anything check with an admin first.\n\
+\n\
+It's also a good idea to mute <#486865905788387328> channel to not get spammed\n\
 		",
     "color": 16711680,
 	"timestamp": new Date(),
