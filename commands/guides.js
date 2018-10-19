@@ -1,9 +1,8 @@
 var config = require('../config.json');
 exports.run = (client, message, args) => {
-    if(message.channel.id != config.channelGuides){
-        return;
-    }
-    message.channel.send(
+    if(message.guild.id != config.guildID) return;
+    if(message.author.id != config.ownerID) return;
+    client.channels.get(config.channelGuides).send(
         {"embed": {
         "title": "Collection of useful links",
         "description": "\

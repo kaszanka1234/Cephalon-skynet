@@ -1,10 +1,7 @@
 ////////// BOT Code //////////
-
 const Discord = require('discord.js'); //import discord framework
 const client = new Discord.Client(); //create discord client instance
 const config = require('./config.json'); //load config file
-
-const ownerID = 'placeholder'; //i'll probably move it to config file anyway
 
 //react to messages
 client.on('message', message => {
@@ -22,20 +19,17 @@ client.on('message', message => {
   
   //executes a command if it finds a matching command file
 	try {
-		
     //reloads the command file cache
 		delete require.cache[require.resolve(`./commands/${cmd}.js`)];
 		
     //loads and runs the command file
 		let commandFile = require(`./commands/${cmd}.js`);
 		commandFile.run(client, message, args);
-    
 	} 
   //logs any errors to console
   catch (e) {
 		console.log(e.stack);
 	}
-	
 });
 
 //reacts if someone joins the server
@@ -43,20 +37,17 @@ client.on("guildMemberAdd", message => {
   
   //executes a matching command file
   try{
-    
     //reloads the cache
 		delete require.cache[require.resolve("./utils/onJoin.js")];
     
     //loads and executes the file
     let onJoin = require("./utils/onJoin.js");
     onJoin.run(client, message);
-    
   } 
   //logs any errors
   catch (e){
     console.log(e.stack);
   }
-  
 });
 
 client.on("guildMemberRemove", message => {
@@ -70,13 +61,12 @@ client.on("guildMemberRemove", message => {
     //loads and executes the file
     let onLeave = require("./utils/onLeave.js");
     onLeave.run(client, message);
-    
   }
+
   //logs any errors
   catch (e){
     console.log(e.stack);
   }
-  
 });
 
 //logs to console if bots starts correctly
@@ -87,17 +77,22 @@ client.login(process.env.TOKEN);
 
 ////////// End of BOT Code //////////
 
-
 //keep alive script for bot
 //pings the website address each 5 minutes
 if(config.env == "prod"){
+
+  // import all libraries
   const http = require('http');
   const express = require('express');
   const app = express();
+
+  // respond to http request with status 200
   app.get("/", (request, response) => {
     console.log(Date.now() + " Ping Received");
     response.sendStatus(200);
   });
+
+  // send ping to itself each 5 minutes
   app.listen(process.env.PORT);
   setInterval(() => {
     http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
