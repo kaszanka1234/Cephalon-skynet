@@ -1,5 +1,6 @@
 var config = require('../config.json');
 exports.run = (damageTypesObject) => {
+	// translate object into an array
 	var damageTypes = new Array();
 	
 	if(damageTypesObject['impact'] != undefined){

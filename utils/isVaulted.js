@@ -1,5 +1,6 @@
 var config = require('../config.json');
 exports.run = (tier, name) => {
+    // checks if the relic is vaulted
     var vaulted = false;
     var vaultedLith = [
         'A1','A2',
