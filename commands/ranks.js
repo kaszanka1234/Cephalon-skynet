@@ -23,7 +23,7 @@ Administrators of the clan they have almost all permissions, they can kick membe
     }}).then(msg =>{
   message.channel.send({embed:{
     "description":officer+"\n\
-Moderators of the clan they can promote other members and mute in text channels too. If you think you should be promoted, or have trouble changing your nickname, message one of them",
+Moderators of the clan they can promote other members and mute in text channels too. If you think you should be promoted, you have trouble changing your nickname or you will be offline for a long time message one of them",
     "color":19967
     }}).then(msg =>{
   message.channel.send({embed:{
