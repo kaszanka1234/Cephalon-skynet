@@ -23,6 +23,7 @@ exports.run = (client, message, args) => {
         message.channel.send('You need to specify at least 2 arguments');
         return;
     }
+    message.channel.send('searching items is still a work in progress\nif it fails please report it to kaszanka_1234');
     const url = 'https://drops.warframestat.us/data/relics.json';
     // process command arguments
     let searchingItem,searchingRelic,relic;
