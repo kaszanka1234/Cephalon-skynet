@@ -31,8 +31,9 @@ exports.run = (client, message, args) => {
 **5.** Usage of excessive caps is prohibited\n\
 **6.** Mentioning @everyone, the Moderators or a specific person without proper reason is prohibited.\n\
 **7.** Don't post someone's personal information without permission.\n\
-**8.** Please use the same name that you use in-game. Do not use fake nickname.\n\
-**9.** NO advertising of any kind on our Discord server, This includes links to sites that earn you money. Admins decide what is allowed and what is not. DONT asume anything check with an admin first.\n\
+**8.** If you are offline on discord for more than 7 days you can be kicked out of clan. If you can't login for an extended period of time contact any officer or higher\n\
+**9.** Please use the same name that you use in-game. Do not use fake nickname.\n\
+**10.** NO advertising of any kind on our Discord server, This includes links to sites that earn you money. Admins decide what is allowed and what is not. DONT asume anything check with an admin first.\n\
 \n\
 It's also a good idea to mute <#486865905788387328> channel to not get spammed\n\
 ",
@@ -54,7 +55,7 @@ It's also a good idea to mute <#486865905788387328> channel to not get spammed\n
 	"title": "In-game Rules",
 	"description": "\n\
 **1.** All rulles that apply to discord also apply to in game chat\n\
-**2.** If you are inactive for more than 30 days you can be kicked out of clan, if you can't play for extended period of time contact <@333769079569776642>\n\
+**2.** If you are inactive for more than 30 days you can be kicked out of clan, if you can't play for extended period of time contact any officer or higher\n\
 **3.** To reach the rank of soldier in clan you have to be at least MR3 and be a member of the clan for at least 2 days, if you are inactive in these 2 days you can be kicked out\n\
 **4.** Higher ranks are given by the highest ranked members of the clan as they are needed, don't ask for a higher rank unless you have a good reason for it\n\
 ",

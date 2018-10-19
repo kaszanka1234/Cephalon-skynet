@@ -1,92 +1,190 @@
 var config = require('../config.json');
 var checkVault = require('../utils/isVaulted.js');
-function Relic(){
-    this.isVaulted = false;
-    this.common = [];
-    this.uncommon = [];
-    this.rare = [];
-    this.tier = '';
-    this.name = '';
-    this.chance = () => {
-        this.int = [25.33,11,2];
-        this.exceptional = [23.33,13,4];
-        this.flawless = [20,17,6];
-        this.rad = [20,16.67,10];
-    };
-}
-exports.run = (client, message, args) =>{
-    var url = '';
-    var type = '';
-    args[0] = args[0].toLowerCase();
-    if(args[0]=="lith"||args[0]=="meso"||args[0]=="neo"||args[0]=="axi"){
-        // searching for relic
-        var era = '';
-        era += args[0].charAt(0).toUpperCase();
-        for(var i=1;i<args[0].length;i++){
-            era+=args[0].charAt(i);
-        }
-        var name = args[1].toUpperCase();
-        url = 'https://drops.warframestat.us/data/relics/'+era+'/'+name+'.json';
-        type = 'relic';
-    }else{
-        //searching for item or wrong name
-        url = 'https://drops.warframestat.us/data/hmmm.json';
-        type = 'item';
+class Relic {
+    constructor(tier, name) {
+        this.tier = tier;
+        this.name = name;
+        this.common = [];
+        this.uncommon = [];
+        this.rare = [];
+        this.isVaulted = checkVault.run(tier, name);
     }
+}
+class Item {
+    constructor(name) {
+        this.name = name;
+        this.relics = [];
+        this.isVaulted = true;
+    }
+}
+exports.run = (client, message, args) => {
+    // return if less than 2 arguments
+    if(args.length<2){
+        message.channel.send('You need to specify at least 2 arguments');
+        return;
+    }
+    message.channel.send('searching items is still a work in progress\nif it fails please report it to kaszanka_1234');
+    const url = 'https://drops.warframestat.us/data/relics.json';
+    // process command arguments
+    let searchingItem,searchingRelic,relic;
+    var arg = '';
+    args.forEach(element => {
+        arg+=element[0].toUpperCase();
+        for(var i=1;i<element.length;i++){
+            arg+=element[i];
+        }
+        arg+=' ';
+    });
+    arg=arg.trim();
+    // string argument ready
+
+    // check if searching for relic or item
+    if(arg.split(' ')[0]=='Lith'||arg.split(' ')[0]=='Meso'||arg.split(' ')[0]=='Neo'||arg.split(' ')[0]=='Axi'){
+        // searching for relic
+        searchingRelic = new Relic(arg.split(' ')[0], arg.split(' ')[1]);
+    }else{
+        // searching for item or typo
+        searchingItem = new Item(arg);
+    }
+    // imort http and get JSON file
     const https = require('https');
-    var data = '';
-    var relic = new Relic();
-    https.get(url, (resp) => {
-        resp.on('data', (chunk) => {
-            data += chunk;
+    https.get(url, resp => {
+        let JSONstring = '';
+        let json = '';
+        let relics = [];
+
+        // data chunk has been recieved
+        resp.on('data', chunk => {
+            JSONstring+=chunk;
         });
-        resp.on('end',() => {
-            if(resp.statusCode==200){
-                //relic/item data recieved
-                try{
-                    data = JSON.parse(data);
-                }catch(e){
-                    console.log(e.stack);
-                    message.channel.send("Parsing error occured");
-                    data = null;
-                }
-                //console.log(data);
-            }else if(resp.statusCode==404){
-                //error 404 recieved
-                message.channel.send("I have not found anything matching your search");
-                data = null;
-            }
-            if(data===null){
+
+        // full data has been recieved
+        resp.on('end', () => {
+
+            // wrong url has been requested
+            // tell the user and abort
+            if(resp.statusCode==404){
+                message.channel.send('api error occureds');
                 return;
-            }else if(type == 'relic'){
-                //console.log(data.rewards.Radiant);
-                relic.tier = data.tier;
-                relic.name = data.name;
-                relic.isVaulted = checkVault.run(era,name);
-                data.rewards.Intact.forEach((reward) => {
-                    if(reward.chance > 16){
-                        relic.common.push(reward.itemName);
-                    }else if(reward.chance > 5){
-                        relic.uncommon.push(reward.itemName);
-                    }else if(reward.chance > 1){
-                        relic.rare.push(reward.itemName);
+            }
+            // correct data has been recieved
+            else if(resp.statusCode==200){
+                //console.log('ok');
+            }
+            // try to parse json
+            try{
+                json=JSON.parse(JSONstring);
+            }catch(e){
+                console.log(e.stack);
+                message.channel.send('error occured');
+            }
+
+            // handle relic or item
+            if(searchingItem != undefined){
+                // handling item
+                json.relics.forEach(item =>{
+                    if(item.state=='Intact'){
+                        let useRelic = false;
+                        let tmp = new Relic(item.tier, item.relicName);
+                        item.rewards.forEach(reward => {
+                            //console.log(reward.itemName == searchingItem.name);
+                            if(reward.itemName == searchingItem.name){
+                                useRelic = true;
+                                if(!tmp.isVaulted){
+                                    searchingItem.isVaulted = false;
+                                }
+                            }
+                            if(reward.chance>25){
+                                tmp.common.push(reward.itemName);
+                            }else if(reward.chance>10){
+                                tmp.uncommon.push(reward.itemName);
+                            }else if(reward.chance>1){
+                                tmp.rare.push(reward.itemName);
+                            }
+                        });
+                        if(useRelic){
+                            searchingItem.relics.push(tmp);
+                        }
                     }
                 });
-                //console.log(relic);
+                if(searchingItem.relics.length==0){
+                    message.channel.send("Item does not exist");
+                    return;
+                }
+                // console.log(searchingItem.relics[0]);
+                let relicList = [];
+                for(let i=0;i<searchingItem.relics.length;i++){
+                    searchingItem.relics[i].common.forEach(r =>{
+                        if(r==searchingItem.name){
+                            const isVaulted = searchingItem.relics[i].isVaulted?'(V)':'';
+                            const someString = searchingItem.relics[i].tier+' '+searchingItem.relics[i].name+' (common) '+isVaulted;
+                            // console.log(someString);
+                            relicList.push(someString);
+                            return;
+                        }
+                    });
+                    searchingItem.relics[i].uncommon.forEach(r =>{
+                        if(r==searchingItem.name){
+                            const isVaulted = searchingItem.relics[i].isVaulted?'(V)':'';
+                            const someString = searchingItem.relics[i].tier+' '+searchingItem.relics[i].name+' (uncommon) '+isVaulted;
+                            // console.log(someString);
+                            relicList.push(someString);
+                            return;
+                        }
+                    });
+                    searchingItem.relics[i].rare.forEach(r =>{
+                        if(r==searchingItem.name){
+                            const isVaulted = searchingItem.relics[i].isVaulted?'(V)':'';
+                            const someString = searchingItem.relics[i].tier+' '+searchingItem.relics[i].name+' (rare) '+isVaulted;
+                            // console.log(someString);
+                            relicList.push(someString);
+                            return;
+                        }
+                    });
+                }
+                console.log(relicList);
+                let ugaBugaNigga = '';
+                const nigaBugaNiggaNigga = ' can be fond in:';
+                let ugaNiggaNiggaBuga = '';
+                if(searchingItem.isVaulted){
+                    ugaBugaNigga = " is completly vaulted and"
+                }
+                relicList.forEach(niggaBugaUgaNigga =>{
+                    ugaNiggaNiggaBuga += '\n'+niggaBugaUgaNigga;
+                });
+                let niggaNiggaBugaNigga = searchingItem.name+ugaBugaNigga+nigaBugaNiggaNigga+ugaNiggaNiggaBuga;
+                
+                message.channel.send(niggaNiggaBugaNigga);
+            }else if(searchingRelic != undefined){
+                // handling relic
+                json.relics.forEach(item => {
+                    if(item.tier == searchingRelic.tier && item.relicName == searchingRelic.name && item.state == 'Intact'){
+                        item.rewards.forEach(reward => {
+                            if(reward.chance>25){
+                                searchingRelic.common.push(reward.itemName);
+                            }else if(reward.chance>10){
+                                searchingRelic.uncommon.push(reward.itemName);
+                            }else if(reward.chance>1){
+                                searchingRelic.rare.push(reward.itemName);
+                            }
+                        });
+                        return;
+                    }
+                });
                 message.channel.send({"embed":{
-                    "title":relic.isVaulted?relic.tier+' '+relic.name+' (Vaulted)':relic.tier+' '+relic.name,
+                    "title":searchingRelic.isVaulted?searchingRelic.tier+' '+searchingRelic.name+' (Vaulted)':searchingRelic.tier+' '+searchingRelic.name,
                     "fields":[
                         {
                             "name":"Common",
-                            "value":relic.common[0]+'\n'+relic.common[1]+'\n'+relic.common[2]
+                            "value":searchingRelic.common[0]+'\n'+searchingRelic.common[1]+'\n'+searchingRelic.common[2]
                         },
                         {
                             "name":"Uncommon",
-                            "value":relic.uncommon[0]+'\n'+relic.uncommon[1]
+                            "value":searchingRelic.uncommon[0]+'\n'+searchingRelic.uncommon[1]
                         },
                         {
                             "name":"Rare",
-                            "value":relic.rare[0]
+                            "value":searchingRelic.rare[0]
                         }
                     ],
                     "timestamp": new Date(config.vaultUpdateTime),
@@ -96,6 +194,7 @@ exports.run = (client, message, args) =>{
                     }
                 }});
             }
+
         });
     });
 }
