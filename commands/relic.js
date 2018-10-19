@@ -88,7 +88,12 @@ exports.run = (client, message, args) =>{
                             "name":"Rare",
                             "value":relic.rare[0]
                         }
-                    ]
+                    ],
+                    "timestamp": new Date(config.vaultUpdateTime),
+                    "footer": {
+                        "icon_url": "https://cdn.discordapp.com/embed/avatars/0.png",
+                        "text": "Vault list updated"
+                    }
                 }});
             }
         });
