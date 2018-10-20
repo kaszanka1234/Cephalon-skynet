@@ -26,9 +26,6 @@ exports.run = (client, message, args) => {
       message.guild.members.get(user.id).addRole(config.roleInitiate);
       message.guild.members.get(user.id).removeRole(config.roleGuest);
       
-      // send message to logs channel
-      client.channels.get(config.channelBotLog).send("<@"+user.id+"> approved");
-
       // get user's nickname if they have one
       // or set it to their username
       var nick = "";
@@ -37,6 +34,9 @@ exports.run = (client, message, args) => {
       }else{
         nick = user.username;
       }
+
+      // send message to logs channel
+      client.channels.get(config.channelBotLog).send("<@"+user.id+"> ("+nick+") approved");
 
       // send message to global channel
       client.channels.get(config.channelGeneral).send("**"+nick+"** is now a member of the clan! Welocme and have fun!");
