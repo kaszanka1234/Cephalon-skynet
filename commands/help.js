@@ -40,6 +40,8 @@ exports.run = (client, message, args) => {
 ?rules - for updating the rules\n\
 ?ranks - for updating the ranks list\n\
 ?approve @user - sets user's role to initiate\n\
+?warn @user [reason] - send a warning to announcements channel, valid reasons are 'kick_offline', 'offline_soldier [days]', 'offline_initiate [days]'\n\
+?inactive @user - \n\
 ask !help for list of moderation commands",
     "color": 26879
   }

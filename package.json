@@ -22,9 +22,9 @@
   "license": "MIT",
   "keywords": [
     "node",
-	"warframe",
-	"discord",
-	"bot",
+    "warframe",
+    "discord",
+    "bot",
     "express"
   ]
 }
