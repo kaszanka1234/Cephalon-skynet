@@ -6,7 +6,7 @@ exports.run = (client, message) => {
   if (message.guild.id != config.guildID) return;
 
   // send message to logs channel
-  client.channels.get(config.channelBotLog).send(message.user.username+"#"+message.user.discriminator+" left");
+  client.channels.get(config.channelBotLog).send(message.user.username+"#"+message.user.discriminator+" ("+message.user.id+") left");
   
   // tries to send global message
   try{
