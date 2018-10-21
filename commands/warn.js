@@ -17,10 +17,10 @@ exports.run = (client, message, args) => {
     user.forEach(u => {
         user = u;
     });
-    if(!args[0].match(/(<@)\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d(>)/g)){
+    /*if(!args[0].match(/(<@)\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d(>)/g)){
         message.channel.send('First argument has to be @user');
         return;
-    }
+    }*/
     let msg = '';
     if(args[2] == undefined && (args[1]=='offline_initiate'||args[1]=='offline_soldier')){
         message.channel.send('You have to specify amount of days for these parameters\nwarn @user [reason] [days]');
