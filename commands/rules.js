@@ -20,6 +20,7 @@ exports.run = (client, message, args) => {
     **3.** To reach the rank of soldier in clan you have to be at least MR3 and be a member of the clan for at least 2 days, if you are inactive in these 2 days you can be kicked out\n\
     **4.** Higher ranks are given by the highest ranked members of the clan as they are needed, don't ask for a higher rank unless you have a good reason for it\n\
     "));
+    return;
   }
   if(message.author.id != config.ownerID) return;
 	message.delete(message.id);
