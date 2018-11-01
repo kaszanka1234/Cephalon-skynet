@@ -23,7 +23,8 @@ exports.run = (client, message, args) => {
   }
   if(message.guild.id != config.guildID) return;
   if(message.author.id != config.ownerID) return;
-	message.delete(message.id);
+  message.delete(message.id);
+  client.channels.get(config.channelRules).send("As a fallback you can message me with ?rules to get rules in plain thext");
 	client.channels.get(config.channelRules).send(
 	{"embed": {
 	"title": "Most importantly you need discord and be on this server",
