@@ -1,6 +1,5 @@
 var config = require('../config.json');
 exports.run = (client, message, args) => {
-  if(message.guild.id != config.guildID) return;
   if(message.guild === null){
     message.channel.send("Discord rules\n**1.** Be respectful.\n\
     **2.** Sending/Linking any harmful material such as viruses, IP grabbers or harmware results in an immediate and permanent ban.\n\
@@ -22,6 +21,7 @@ exports.run = (client, message, args) => {
     "));
     return;
   }
+  if(message.guild.id != config.guildID) return;
   if(message.author.id != config.ownerID) return;
 	message.delete(message.id);
 	client.channels.get(config.channelRules).send(
