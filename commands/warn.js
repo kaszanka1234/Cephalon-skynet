@@ -4,19 +4,11 @@ exports.run = (client, message, args) => {
         message.channel.send('Insufficient permissions');
         return;
     }
-    message.delete(message.id);
     if(args.length<2){
         message.channel.send("You have to specify at least 2 arguments");
         return;
     }
-    let user = message.mentions.users;
-    if(user.length>1){
-        message.channel.send('You can only warn one user at once!');
-        return;
-    }
-    user.forEach(u => {
-        user = u;
-    });
+    let user = args[0];
     /*if(!args[0].match(/(<@)\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d(>)/g)){
         message.channel.send('First argument has to be @user');
         return;
@@ -48,5 +40,6 @@ exports.run = (client, message, args) => {
 correct reasons are "kick_offline", "offline_initiate [days]", "offline_soldier [days]"');
         return;
     }
-    client.channels.get(config.channelAnnouncements).send('<@'+user.id+'>'+msg);
+    message.delete(message.id);
+    client.channels.get(config.channelAnnouncements).send(user+msg);
 }
