@@ -34,9 +34,16 @@ exports.run = (client, message, args) => {
       }else{
         nick = user.username;
       }
+      var staffNick = "";
+      if(message.guild.members.get(message.author.id).nickname!==null){
+        staffNick = message.guild.members.get(message.author.id).nickname;
+      }else{
+        staffNick = message.author.username;
+      }
+      
 
       // send message to logs channel
-      client.channels.get(config.channelBotLog).send("<@"+user.id+"> (**"+nick+"**, "+user.id+") approved by "+message.author.username);
+      client.channels.get(config.channelBotLog).send("<@"+user.id+"> (**"+nick+"**, "+user.id+") approved by "+staffNick);
 
       // send message to global channel
       client.channels.get(config.channelGeneral).send("**"+nick+"** is now a member of the clan! Welcome and have fun!");
