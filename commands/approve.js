@@ -39,7 +39,7 @@ exports.run = (client, message, args) => {
       client.channels.get(config.channelBotLog).send("<@"+user.id+"> (**"+nick+"**, "+user.id+") approved by "+message.author.username);
 
       // send message to global channel
-      client.channels.get(config.channelGeneral).send("**"+nick+"** is now a member of the clan! Welocme and have fun!");
+      client.channels.get(config.channelGeneral).send("**"+nick+"** is now a member of the clan! Welcome and have fun!");
     }
     // if can't promote send a message
     else{
