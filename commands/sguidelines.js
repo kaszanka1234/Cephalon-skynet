@@ -5,7 +5,7 @@ exports.run = (client,message,args) => {
 
     message.delete(message.id);
 
-    var warlord = message.guild.roles.get('488856481224196097');
+    var warlord = message.guild.roles.get(config.roleWarlord);
     let general = message.guild.roles.get(config.roleGeneral);
     let officer = message.guild.roles.get(config.roleOfficer);
     let sergeant = message.guild.roles.get(config.roleSergeant);
@@ -27,23 +27,22 @@ exports.run = (client,message,args) => {
             "fields": [
                 {
                     "name":"\u200b",
-                    "value": warlord+"\n\
-hmmm"
-                },
-                {
-                    "name":"\u200b",
                     "value": general+"\n\
-hmmm"
+You are here to help maintain the clan and decide it's fate\n\
+If dark sectors armstice ever gets lifted you will be coordinating attacks on rails"
                 },
                 {
                     "name":"\u200b",
                     "value": officer+"\n\
-hmmm"
+You can promote other members and moderate discord and clan chat\n\
+Your duties include promoting others to soldiers (see rules) or sergeants (consult your superiors)"
                 },
                 {
                     "name":"\u200b",
                     "value": sergeant+"\n\
-hmmm"
+You can invite new people to clan and assingn them role of Initiate on discord with '?approve @user', but make sure they have set their discord nickname to exactly the same as they use in game\n\
+Your duties include helping other clan members and starting any new research added with new updates\n\
+When inviting people use this link https://discord.gg/Q6NDbvc"
                 }
                 
             ]
