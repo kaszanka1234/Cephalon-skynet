@@ -36,7 +36,7 @@ exports.run = (client, message, args) => {
       }
 
       // send message to logs channel
-      client.channels.get(config.channelBotLog).send("<@"+user.id+"> (**"+nick+"**, "+user.id+") approved");
+      client.channels.get(config.channelBotLog).send("<@"+user.id+"> (**"+nick+"**, "+user.id+") approved by "+message.author.username);
 
       // send message to global channel
       client.channels.get(config.channelGeneral).send("**"+nick+"** is now a member of the clan! Welocme and have fun!");
