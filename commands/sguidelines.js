@@ -40,7 +40,7 @@ Your duties include promoting others to soldiers (see rules) or sergeants (consu
                 {
                     "name":"\u200b",
                     "value": sergeant+"\n\
-You can invite new people to clan and assingn them role of Initiate on discord with '?approve @user', but make sure they have set their discord nickname to exactly the same as they use in game\n\
+You can invite new people to clan and assingn them role of Initiate on discord with '?approve @user', but make sure they have set their discord nickname to exactly the same as they use in game AND they are actually in the clan\n\
 Your duties include helping other clan members and starting any new research added with new updates\n\
 When inviting people use this link https://discord.gg/Q6NDbvc"
                 }
