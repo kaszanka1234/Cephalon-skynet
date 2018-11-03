@@ -22,7 +22,7 @@ function hello(client, message){
   thonk = thonk.run();
 
   // send greet message
-  client.channels.get(config.channelGeneral).send("Hi there <@"+message.user.id+">, Welcome on **"+message.guild.name+"**, remember to read <#434384191820398593> and set your nickname here to the same as in game "+thonk+"\n"); 
+  client.channels.get(config.channelGeneral).send("Hi there <@"+message.user.id+">, Welcome on **"+message.guild.name+"**, remember to read <#434384191820398593> and set your nickname here (right-click on your name and 'change nickname') to the same as in game "+thonk+"\n"); 
   // set role to guest
   message.addRole(config.roleGuest);
 }
