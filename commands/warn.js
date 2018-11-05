@@ -4,7 +4,6 @@ exports.run = (client, message, args) => {
         message.channel.send('Insufficient permissions');
         return;
     }
-    message.delete(message.id);
     if(args.length<2){
         message.channel.send("You have to specify at least 2 arguments");
         return;
@@ -41,5 +40,6 @@ exports.run = (client, message, args) => {
 correct reasons are "kick_offline", "offline_initiate [days]", "offline_soldier [days]"');
         return;
     }
+    message.delete(message.id);
     client.channels.get(config.channelAnnouncements).send(user+msg);
 }
