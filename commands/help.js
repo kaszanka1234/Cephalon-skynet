@@ -22,6 +22,7 @@ exports.run = (client, message, args) => {
 ?compareweapons [name] ? [name] - compares 2 weapons' stats (DM)(WIP)\n\
 ?relic [era] [name] - show relic drops (DM)(WIP)\n\
 ?relic [item] - show which relics the item is in(DM)(WIP)\n\
+?sortie - display current sortie\n\
 "
       },
       {
