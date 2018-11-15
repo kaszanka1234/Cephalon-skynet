@@ -1,35 +1,44 @@
 ////////// BOT Code //////////
 const Discord = require('discord.js'); //import discord framework
 const client = new Discord.Client(); //create discord client instance
-const config = require('./config.json'); //load config file
+const mysql = require('./utils/mySQL.js'); // import mysql lib
+
+const placeholder = require('./config.json'); //load config file
 
 //react to messages
 client.on('message', message => {
-	
-  //split message to command and it's arguments
-	let args = message.content.slice(config.prefix.length).trim().split(' ');
-	let cmd = args.shift().toLowerCase();
-	
-  //ignore the message if the author is bot or the message doesn't start with the prefix
-	if (message.author.bot) return;
-	if (!message.content.startsWith(config.prefix)) return;
-	
-  //ignore if dev version is used by not-owner
-	if(config.env == "dev" && message.author.id != config.ownerID) return;
   
-  //executes a command if it finds a matching command file
-	try {
-    //reloads the command file cache
-		delete require.cache[require.resolve(`./commands/${cmd}.js`)];
-		
-    //loads and runs the command file
-		let commandFile = require(`./commands/${cmd}.js`);
-		commandFile.run(client, message, args);
-	} 
-  //logs any errors to console
-  catch (e) {
-		console.log(e.stack);
-	}
+  //
+  let retrieveConfig = mysql.retriveConfig(message.guild.id);
+  retrieveConfig.then((config) => {
+    //split message to command and it's arguments
+    let args = message.content.slice(config.prefix.length).trim().split(' ');
+    let cmd = args.shift().toLowerCase();
+
+    //ignore the message if the author is bot or the message doesn't start with the prefix
+    if (message.author.bot) return;
+    if (!message.content.startsWith(config.prefix)) return;
+    
+    //ignore if dev version is used by not-owner
+    if(process.env.ENV == "dev" && message.author.id != config.ownerID) return;
+  
+    //executes a command if it finds a matching command file
+    try {
+      //reloads the command file cache
+      delete require.cache[require.resolve(`./commands/${cmd}.js`)];
+      
+      //loads and runs the command file
+      let commandFile = require(`./commands/${cmd}.js`);
+      commandFile.run(client, message, args);
+    } 
+    //logs any errors to console
+    catch (e) {
+      console.log(e.stack);
+    }
+  });
+
+	
+  
 });
 
 //reacts if someone joins the server
@@ -79,7 +88,7 @@ client.login(process.env.TOKEN);
 
 //keep alive script for bot
 //pings the website address each 5 minutes
-if(config.env == "prod"){
+if(placeholder.env == "prod"){
 
   // import all libraries
   const http = require('http');
